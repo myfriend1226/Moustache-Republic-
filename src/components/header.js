@@ -60,7 +60,7 @@ export default class Header extends Component {
           color: "black"
         }}
       >
-        <Navbar  right style={{ width: "85%" }}>
+        <Navbar  right style={{ width: "90%" }}>
         <Nav className="ml-auto">
           <NavDropdown
             style={{ color: "#888888" }}
