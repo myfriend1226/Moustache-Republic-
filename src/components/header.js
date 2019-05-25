@@ -1,28 +1,26 @@
 import React, { Component } from "react";
-import { NavDropdown, Row, Col } from "react-bootstrap";
+import { NavDropdown,Navbar,Nav, Row, Col } from "react-bootstrap";
 import "../assets/nav.css";
 export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false
-    };
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
-  }
+
  
-  onMouseEnter() {
-    this.setState({ show: true });
-  }
+  handleDropdownToggle = event => {
+ 
+    try {
+      if (event) {
+        event.preventDefault();
+        event.stopPropogation();
+      }
+    } catch (e) {
+      return;
+    }
+  };
 
-  onMouseLeave() {
-    this.setState({ show: false });
-  }
-
+ 
   render() {
     let itemDisplay = item => {
       return (
-        <NavDropdown.Item style={{ width: "300px" }} href="#action/3.1">
+        <NavDropdown.Item style={{ width: "300px" }} href="#action/3.1" >
           <Row style={{ height: "20%", width: "30%", display: "inline" }}>
             <Col>
               <img
@@ -62,24 +60,22 @@ export default class Header extends Component {
           color: "black"
         }}
       >
-        <div className="nav justify-content-end " style={{ width: "85%" }}>
+        <Navbar  right style={{ width: "85%" }}>
+        <Nav className="ml-auto">
           <NavDropdown
-            className="nav-link"
             style={{ color: "#888888" }}
             title={"My Cart (" + this.props.total + ")"}
-            id="basic-nav-dropdown"
-            open={this.state.show}
             alignRight={true}
-            onMouseOver={this.onMouseEnter}
-            onMouseLeave={this.onMouseLeave}
+            onClick={this.handleDropdownToggle}
           >
             {this.props.listItem && this.props.listItem.length > 0
               ? this.props.listItem.map(item => itemDisplay(item))
-              :  <NavDropdown.Item style={{ width: "300px", textAlign:"center" }} href="#action/3.1">
+              :  <NavDropdown.Item style={{ width: "300px", textAlign:"center" }} >
               <p >The cart is empty !!</p>
               </NavDropdown.Item>}
           </NavDropdown>
-        </div>
+          </Nav>
+        </Navbar>
       </div>
     );
   }
