@@ -1,8 +1,7 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./components/header";
+import Header from "./components/Header";
 import ClothingCard from "./components/ClothingCard";
 
 class App extends React.Component {
@@ -10,44 +9,39 @@ class App extends React.Component {
     super(props);
     this.state = {
       total: 0,
-      cardList: [],
-      listItem: {
-        id: 0,
-        name: "",
-        img: "",
-        size: "",
-        number: 0,
-        amount: 0
-      }
+      cardList: []
     };
   }
 
-  stateUpdate = listItem => {
-    let {cardList,total}=this.state;
-    let add=true;
-    
-      cardList.forEach((item,index)=>{
-        if(listItem.size==item.size){
-          item.number++;
-          add=false;
-        }
-      });
-
-      if(add) {
-        cardList.push(listItem);
+  handleAddItem = listItem => {
+    let { cardList, total } = this.state;
+    let add = true;
+     //Check Item existed in the card list 
+    cardList.forEach((item, index) => {
+      if (listItem.size === item.size) {
+        item.number++;
+        add = false;
       }
-    total++;
-    console.log(cardList);
-    this.setState({ total,
-      cardList
     });
+    //Add item in the card list
+    if (add) {
+      cardList.push(listItem);
+    }
+    // increase number of item
+    total++;
+
+    this.setState({ total, cardList });
   };
 
   render() {
     return (
       <div className="App">
-        <Header className="App-header" total={this.state.total} listItem={this.state.cardList} />
-        <ClothingCard {...this.state} stateUpdate={this.stateUpdate} />
+        <Header
+          className="App-header"
+          total={this.state.total}
+          listItem={this.state.cardList}
+        />
+        <ClothingCard {...this.state} stateUpdate={this.handleAddItem} />
       </div>
     );
   }

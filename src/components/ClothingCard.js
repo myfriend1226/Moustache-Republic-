@@ -37,6 +37,7 @@ export default class ClothingCard extends Component {
             <img
               src={Shirt}
               style={{ height: "90%", width: "85%", marginTop: "20px" }}
+              alt="Item"
             />
           </div>
           <div className="offset-md-1 col-sm-12 col-md-5">
