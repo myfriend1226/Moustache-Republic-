@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { NavDropdown,Navbar,Nav, Row, Col } from "react-bootstrap";
 import "../assets/nav.css";
 export default class Header extends Component {
-
  
-  handleDropdownToggle = event => {
- 
+  handleDropdownToggle = event => { 
     try {
       if (event) {
         event.preventDefault();
@@ -15,7 +13,6 @@ export default class Header extends Component {
       return;
     }
   };
-
  
   render() {
     let itemDisplay = item => {
